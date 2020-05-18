@@ -11,6 +11,17 @@ import org.junit.Test;
 public class BasicIndexerTests {
 
 	@Test
+	public void testIndexFolder() throws Exception {
+		BasicIndexer indexer = new BasicIndexer();
+		Index index = indexer.indexFolder("src/test/resources");
+		List<Location> locations = index.getLocations("ship");
+		assertEquals(1, locations.size());
+		/*for (Location location : locations) {
+			System.out.println(location.getFileName()+": "+location.getLines());
+		}*/
+	}
+	
+	@Test
 	public void testShouldCount() {
 		BasicIndexer indexer = new BasicIndexer();
 		assertFalse(indexer.shouldCount(null));
@@ -36,7 +47,6 @@ public class BasicIndexerTests {
 		String filename = "src/test/resources/21891.txt";
 		BasicIndexer indexer = new BasicIndexer();
 		FileIndex index = indexer.buildIndex(filename);
-		System.out.println(index.getWords());
 		assertEquals(281, index.getWords().size());
 	}
 	

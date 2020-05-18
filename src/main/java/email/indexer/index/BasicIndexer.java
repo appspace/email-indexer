@@ -7,21 +7,22 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class BasicIndexer implements Indexer {
 
-	public List<FileIndex> indexFolder(String folderName) throws Exception {
+	public Index indexFolder(String folderName) throws Exception {
 		List<String> fileNames = listFiles(folderName);
 		
-		List<FileIndex> indexes = fileNames
+		Index index = new InMemoryIndex();
+		
+		fileNames
 			.parallelStream()
 			.map(fileName -> buildIndex(fileName))
-			.filter(index -> index.isEmpty())
-			.collect(Collectors.toList());
+			.filter(fileIndex -> !fileIndex.isEmpty())
+			.forEach(fileIndex -> index.addFileIndex(fileIndex));
 		
-		return indexes;
+		return index;
 	}
 
 	protected FileIndex buildIndex(String fileName) {
