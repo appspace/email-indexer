@@ -1,5 +1,6 @@
 package email.indexer.index;
 
+import java.io.File;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -13,6 +14,9 @@ public class BasicFileIndex implements FileIndex {
 	private Map<String, HashSet<Integer>> _data = new HashMap<String, HashSet<Integer>>();
 	
 	public BasicFileIndex(String name) {
+		if (name.contains(File.separator)) {
+			name = name.substring(name.lastIndexOf(File.separator)+1);
+		}
 		_name = name;
 	}
 	

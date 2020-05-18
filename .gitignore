@@ -18,3 +18,4 @@ build/
 *.bin
 *.lock
 .DS_Store
+bin/

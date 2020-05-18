@@ -3,6 +3,8 @@ package email.indexer.index;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.io.File;
+
 import org.junit.Test;
 
 public class BasicFileIndexTests {
@@ -39,4 +41,11 @@ public class BasicFileIndexTests {
 		assertEquals(index.getName(), "test");
 	}
 
+	@Test
+	public void testLongName() {
+		BasicFileIndex index = new BasicFileIndex("src"+File.separator+"somewhere"+File.separator+"test.txt");
+	
+		assertEquals("test.txt", index.getName());
+	}
+	
 }
