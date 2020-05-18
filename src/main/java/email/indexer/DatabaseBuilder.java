@@ -15,7 +15,7 @@ public class DatabaseBuilder {
 	public static void main(String[] args) {
 		if (args.length<1) {
 			System.out.println("Folder name is required. Example:");
-			System.out.println("java DatabaseBuilder /emails");
+			System.out.println("`java DatabaseBuilder /emails`");
 			System.exit(-1);
 		}
 		String folder = args[0];
@@ -32,6 +32,8 @@ public class DatabaseBuilder {
 			ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
             objectOut.writeObject(searchTree);
             objectOut.close();
+            System.out.println("Folder is indexed! Use `java Search {search_word}` command to query the database.");
+            System.exit(0);
 		} catch (Exception e) {
 			System.err.println("Unable to process folder");
 			e.printStackTrace();
