@@ -1,12 +1,12 @@
 package email.indexer.index;
 
-import java.io.IOException;
+import java.util.List;
 
 public interface Indexer {
 
 	/**
-	 * Index content
+	 * Index content of a folder
 	 */
-	public Index buildIndex(String filename) throws IOException;
+	public List<FileIndex> indexFolder(String folderName) throws Exception;
 
 }

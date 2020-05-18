@@ -6,13 +6,13 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class BasicIndex implements Index {
+public class BasicFileIndex implements FileIndex {
 
 	private String _name;
 	
 	private Map<String, HashSet<Integer>> _data = new HashMap<String, HashSet<Integer>>();
 	
-	public BasicIndex(String name) {
+	public BasicFileIndex(String name) {
 		_name = name;
 	}
 	
@@ -45,6 +45,11 @@ public class BasicIndex implements Index {
 			positions = _data.get(word);
 		}
 		positions.add(position);
+	}
+
+	@Override
+	public boolean isEmpty() {
+		return _data.isEmpty();
 	}
 	
 }

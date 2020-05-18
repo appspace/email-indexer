@@ -5,11 +5,11 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-public class BasicIndexTests {
+public class BasicFileIndexTests {
 
 	@Test
 	public void testMissingWordNotFound() {
-		BasicIndex index = new BasicIndex("test");
+		BasicFileIndex index = new BasicFileIndex("test");
 		index.addWord("book", 3);
 		index.addWord("book", 13);
 		index.addWord("book2", 3);
@@ -19,7 +19,7 @@ public class BasicIndexTests {
 
 	@Test
 	public void testResult() {
-		BasicIndex index = new BasicIndex("test");
+		BasicFileIndex index = new BasicFileIndex("test");
 		index.addWord("book", 3);
 		index.addWord("book", 13);
 		index.addWord("book2", 3);
@@ -34,7 +34,7 @@ public class BasicIndexTests {
 	
 	@Test
 	public void testName() {
-		BasicIndex index = new BasicIndex("test");
+		BasicFileIndex index = new BasicFileIndex("test");
 	
 		assertEquals(index.getName(), "test");
 	}

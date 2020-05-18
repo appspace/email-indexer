@@ -2,7 +2,7 @@ package email.indexer.index;
 
 import java.util.Set;
 
-public interface Index {
+public interface FileIndex {
 	
 	/**
 	 * Get index name
@@ -22,4 +22,10 @@ public interface Index {
 	 * @return
 	 */
 	public Set<Integer> getLocations(String word);
+	
+	/**
+	 * 
+	 * @return true if index is empty
+	 */
+	public boolean isEmpty();
 }
