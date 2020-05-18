@@ -1,8 +1,14 @@
 package email.indexer.index;
 
+import java.io.Serializable;
 import java.util.Set;
 
-public class Location {
+public class Location implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5088826189317992295L;
 
 	private final String _fileName;
 	

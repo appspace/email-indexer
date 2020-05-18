@@ -1,5 +1,8 @@
 package email.indexer;
 
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+
 import email.indexer.index.BasicIndexer;
 import email.indexer.index.Index;
 import email.indexer.searchtree.InMemorySearchTree;
@@ -25,7 +28,10 @@ public class DatabaseBuilder {
 			for (String word : index.getWords()) {
 				searchTree.addLocations(word, index.getLocations(word));				
 			}
-			
+			FileOutputStream fileOut = new FileOutputStream(dbFile);
+			ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+            objectOut.writeObject(searchTree);
+            objectOut.close();
 		} catch (Exception e) {
 			System.err.println("Unable to process folder");
 			e.printStackTrace();
