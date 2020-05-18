@@ -9,13 +9,11 @@ import email.indexer.searchtree.InMemorySearchTree;
 import email.indexer.searchtree.SearchTree;
 
 public class DatabaseBuilder {
-
-	private final static String dbFile = "database.db";
 	
 	public static void main(String[] args) {
-		if (args.length<1) {
-			System.out.println("Folder name is required. Example:");
-			System.out.println("`java DatabaseBuilder /emails`");
+		if (args.length<2) {
+			System.out.println("Folder name to index and output DB file path is required. Example:");
+			System.out.println("`java DatabaseBuilder /emails database.db`");
 			System.exit(-1);
 		}
 		String folder = args[0];
@@ -28,11 +26,11 @@ public class DatabaseBuilder {
 			for (String word : index.getWords()) {
 				searchTree.addLocations(word, index.getLocations(word));				
 			}
-			FileOutputStream fileOut = new FileOutputStream(dbFile);
+			FileOutputStream fileOut = new FileOutputStream(args[1]);
 			ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
             objectOut.writeObject(searchTree);
             objectOut.close();
-            System.out.println("Folder is indexed! Use `java Search {search_word}` command to query the database.");
+            System.out.println("Folder is indexed! Use `java Search " + args[1] + " {search_word}` command to query the database.");
             System.exit(0);
 		} catch (Exception e) {
 			System.err.println("Unable to process folder");
